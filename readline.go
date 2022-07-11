@@ -77,6 +77,9 @@ type Config struct {
 	FuncOnWidthChanged  func(func())
 	ForceUseInteractive bool
 
+	// RuneInputHandler 字符输入拦截器, 返回true继续向下，返回false拦截
+	RuneInputHandler func(r rune) bool
+
 	// private fields
 	inited    bool
 	opHistory *opHistory

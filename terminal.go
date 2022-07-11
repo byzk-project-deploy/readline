@@ -140,6 +140,7 @@ func (t *Terminal) ioloop() {
 			}
 		}
 		expectNextChar = false
+	ContinueRead:
 		r, _, err := buf.ReadRune()
 		if err != nil {
 			if strings.Contains(err.Error(), "interrupted system call") {
@@ -147,6 +148,12 @@ func (t *Terminal) ioloop() {
 				continue
 			}
 			break
+		}
+
+		if t.cfg.RuneInputHandler != nil {
+			if !t.cfg.RuneInputHandler(r) {
+				goto ContinueRead
+			}
 		}
 
 		if isEscape {
