@@ -126,6 +126,9 @@ func (t *Terminal) ioloop() {
 		isEscape       bool
 		isEscapeEx     bool
 		expectNextChar bool
+
+		r   rune
+		err error
 	)
 
 	buf := bufio.NewReader(t.getStdin())
@@ -141,7 +144,7 @@ func (t *Terminal) ioloop() {
 		}
 		expectNextChar = false
 	ContinueRead:
-		r, _, err := buf.ReadRune()
+		r, _, err = buf.ReadRune()
 		if err != nil {
 			if strings.Contains(err.Error(), "interrupted system call") {
 				expectNextChar = true
