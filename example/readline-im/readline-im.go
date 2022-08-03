@@ -7,7 +7,7 @@ import (
 
 	"log"
 
-	"github.com/desertbit/readline"
+	"github.com/byzk-project-deploy/readline"
 )
 
 func main() {

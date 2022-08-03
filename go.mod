@@ -1,4 +1,4 @@
-module github.com/desertbit/readline
+module github.com/byzk-project-deploy/readline
 
 go 1.12
 
